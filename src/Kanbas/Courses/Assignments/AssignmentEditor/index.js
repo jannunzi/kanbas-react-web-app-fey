@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import db from "../../../Database";
-
+import CourseItems from "./courseitems";
 
 function AssignmentEditor() {
   const { assignmentId } = useParams();
   const assignment = db.assignments.find(
-    (assignment) => assignment._id === assignmentId);
-
+    (assignment) => assignment.courseId === assignmentId);
 
   const { courseId } = useParams();
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ function AssignmentEditor() {
   return (
     <div>
       <h2>Assignment Name</h2>
-      <input value={assignment.title}
+      <input value={<CourseItems/>}
              className="form-control mb-2" />
       <Link to={`/Kanbas/Courses/${courseId}/Assignments`}
             className="btn btn-danger">
